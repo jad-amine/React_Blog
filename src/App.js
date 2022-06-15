@@ -4,8 +4,6 @@ import Home from "./Home";
 function App() {
   const title = "Welcome to the new blog";
   const likes = 50;
-  const array = ["jad", "john", 50];
-  var link = "https://www.google.com";
 
   return (
     <div className="App">
