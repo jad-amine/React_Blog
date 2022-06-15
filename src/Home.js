@@ -1,27 +1,8 @@
-import { useEffect } from "react";
-import { useState } from "react";
 import BlogList from "./BlogList";
+import useFetch from "./useFetch";
 
 const Home = () => {
-  const [blogs, setBlogs] = useState(null);
-  const [message, setMessage] = useState("Loading...");
-
-  useEffect(() => {
-    // just to simulate a fetch over the internet
-    setTimeout(
-      () =>
-        fetch("http://localhost:8000/blogs")
-          .then((res) => {
-            return res.json();
-          })
-          .then((data) => {
-            setBlogs(data);
-          })
-          .catch((err) => setMessage("Network error. Please try again later.")),
-      1000
-    );
-  }, []);
-
+  const { data: blogs, message} = useFetch("http://localhost:8000/blogs")
   return (
     <div className="home">
       {blogs ? (
