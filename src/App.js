@@ -1,17 +1,25 @@
 import Navbar from "./Navbar.js";
 import Home from "./Home";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Create from "./Create.js";
 
 function App() {
-  const title = "Welcome to the new blog";
-  const likes = 50;
-
   return (
-    <div className="App">
-      <Navbar /> {/* we want it to appear above the content */}
-      <div className="content">
-        <Home />
+    <BrowserRouter>
+      <div className="App">
+        <Navbar />
+        <div className="content">
+          <Switch>
+            <Route path="/create">
+              <Create />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 

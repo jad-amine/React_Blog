@@ -1,8 +1,11 @@
+// Used react-router-dom version 5 
 import BlogList from "./BlogList";
 import useFetch from "./useFetch";
 
 const Home = () => {
-  const { data: blogs, message} = useFetch("http://localhost:8000/blogs")
+  // custom hook
+  const { data: blogs, message } = useFetch("http://localhost:8000/blogs");
+
   return (
     <div className="home">
       {blogs ? (
