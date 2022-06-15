@@ -4,25 +4,31 @@ import BlogList from "./BlogList";
 
 const Home = () => {
   const [blogs, setBlogs] = useState(null);
-
-  const handleDelete = (id) => {
-    const newBlogs = blogs.filter((blog) => blog.id !== id);
-    setBlogs(newBlogs);
-  };
+  const [message, setMessage] = useState("Loading...");
 
   useEffect(() => {
-    fetch("http://localhost:8000/blogs")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setBlogs(data);
-      });
+    // just to simulate a fetch over the internet
+    setTimeout(
+      () =>
+        fetch("http://localhost:8000/blogs")
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            setBlogs(data);
+          })
+          .catch((err) => setMessage("Network error. Please try again later.")),
+      1000
+    );
   }, []);
 
   return (
     <div className="home">
-      {blogs && <BlogList blogs={blogs} title="All Blogs!" handleDelete={handleDelete} />}
+      {blogs ? (
+        <BlogList blogs={blogs} title="All Blogs!" />
+      ) : (
+        <h2>{message}</h2>
+      )}
     </div>
   );
 };
