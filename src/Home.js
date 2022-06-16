@@ -5,7 +5,7 @@ import useFetch from "./useFetch";
 const Home = () => {
   // custom hook
   const { data: blogs, message } = useFetch("http://localhost:8000/blogs");
-
+  
   return (
     <div className="home">
       {blogs ? (
